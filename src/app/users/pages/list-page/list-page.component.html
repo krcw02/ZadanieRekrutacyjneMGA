@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <div class="row mt-3">
+    <div class="col-sm-6">
+      <h3><i class="fa-solid fa-user-group fa-sm"></i> List of smart guys</h3>
+    </div>
+    <div class="col-sm-6 text-end">
+      <button class="btn text-light btn-primary" (click)="openModal(null)">
+        <i class="fa-solid fa-plus fa-sm"></i> Add brainiac
+      </button>
+    </div>
+    <div class="col-12 mt-3">
+      <app-table
+        [users]="users"
+        (editUser)="openModal($event)"
+        (deleteUser)="deleteUser($event)"
+      ></app-table>
+    </div>
+  </div>
+</div>
+<app-upsert-user-modal
+  *ngIf="isModalOpen"
+  [user]="selectedUser"
+  (save)="saveData($event)"
+  (close)="closeModal()"
+></app-upsert-user-modal>

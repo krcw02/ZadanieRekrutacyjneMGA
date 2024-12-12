@@ -1,0 +1,15 @@
+// Warningi w konsoli sa spowodowane przez niezgodnosc wersji bootstrapa z sass
+@import "../node_modules/bootstrap/scss/functions";
+
+$primary: #44001a;
+$secondary: #b15b5b;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+
+
+* {
+    font-size: 18px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}

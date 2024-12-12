@@ -1,0 +1,93 @@
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+          Add new brainiac
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="onClose(form)"
+        ></button>
+      </div>
+      <div>
+        <form class="modal-body" #form="ngForm" (ngSubmit)="onSave()">
+          <div class="row">
+            <div class="col-sm-6">
+              <label for="first_name" class="form-label">First name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="first_name"
+                name="first_name"
+                placeholder="Type in the first name"
+                required
+                [(ngModel)]="user!.first_name"
+                #firstName="ngModel"
+              />
+            </div>
+            <div class="col-sm-6">
+              <label for="last_name" class="form-label">Last name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="last_name"
+                name="last_name"
+                placeholder="Type in the last name"
+                required
+                [(ngModel)]="user!.last_name"
+                #lastName="ngModel"
+              />
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-12">
+              <label for="email" class="form-label">E-mail</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Type in the email"
+                required
+                [(ngModel)]="user!.email"
+                #email="ngModel"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="onClose(form)"
+        >
+          Close
+        </button>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="form.invalid"
+          data-bs-dismiss="modal"
+          (click)="onSave()"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<td class="align-middle text-center p-2">{{ user.id }}</td>
+<td class="align-middle text-center" style="width: 55px">
+  <img
+    [src]="user.avatar"
+    alt="avatar"
+    width="50"
+    height="50"
+    class="align-middle"
+  />
+</td>
+<td class="align-middle">{{ user.first_name }}</td>
+<td class="align-middle">{{ user.last_name }}</td>
+<td class="align-middle">{{ user.email }}</td>
+<td class="align-middle text-end">
+  <button class="btn btn-sm text-primary" (click)="editUser()">
+    <i class="fa-solid fa-pen-to-square"></i>
+  </button>
+  <button class="btn btn-sm text-primary" (click)="deleteUser()">
+    <i class="fa-solid fa-trash-can text-primary"></i>
+  </button>
+</td>
