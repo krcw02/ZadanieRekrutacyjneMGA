@@ -23,6 +23,8 @@ export class ListPageComponent implements OnInit {
   users: User[] = [];
   selectedUser: User | null = null;
   isModalOpen = false;
+  isDeleteModalOpen = false;
+  userToDeleteId: number | null = null;
 
   ngOnInit(): void {
     this.UserService.getUsers().subscribe((data) => {
@@ -32,6 +34,7 @@ export class ListPageComponent implements OnInit {
         console.error('Błąd podczas pobierania użytkowników', error);
       };
   }
+
   openModal(user: User | null): void {
     this.selectedUser = user
       ? { ...user }
@@ -44,10 +47,23 @@ export class ListPageComponent implements OnInit {
     this.selectedUser = null;
   }
 
-  deleteUser(id: number): void {
-    this.UserService.deleteUser(id).subscribe({
+  openDeleteModal(id: number): void {
+    this.userToDeleteId = id;
+    this.isDeleteModalOpen = true;
+    const modalElement = document.getElementById('staticBackdrop');
+    const modal = new bootstrap.Modal(modalElement!);
+    modal.show();
+  }
+
+  closeDeleteModal(): void {
+    this.userToDeleteId = null;
+    this.isDeleteModalOpen = false;
+  }
+
+  deleteUser(): void {
+    this.UserService.deleteUser(this.userToDeleteId!).subscribe({
       next: () => {
-        this.users = this.users.filter((u) => u.id !== id);
+        this.users = this.users.filter((u) => u.id !== this.userToDeleteId!);
       },
       error: (error: any) => {
         console.error('Błąd podczas usuwania użytkownika', error);

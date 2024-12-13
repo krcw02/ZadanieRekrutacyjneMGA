@@ -1,9 +1,10 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../../models/user.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'tr[app-table-row]',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './table-row.component.html',
 })
 export class TableRowComponent {

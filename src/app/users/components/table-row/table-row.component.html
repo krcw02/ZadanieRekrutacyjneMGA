@@ -1,12 +1,14 @@
 <td class="align-middle text-center p-2">{{ user.id }}</td>
 <td class="align-middle text-center" style="width: 55px">
   <img
+    *ngIf="user.avatar"
     [src]="user.avatar"
     alt="avatar"
     width="50"
     height="50"
     class="align-middle"
   />
+  <i *ngIf="!user.avatar" class="fa-solid fa-user fa-xl"></i>
 </td>
 <td class="align-middle">{{ user.first_name }}</td>
 <td class="align-middle">{{ user.last_name }}</td>

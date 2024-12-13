@@ -12,11 +12,57 @@
       <app-table
         [users]="users"
         (editUser)="openModal($event)"
-        (deleteUser)="deleteUser($event)"
+        (deleteUser)="openDeleteModal($event)"
       ></app-table>
     </div>
   </div>
 </div>
+
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete user</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this user?</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="closeDeleteModal()"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="deleteUser()"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <app-upsert-user-modal
   *ngIf="isModalOpen"
   [user]="selectedUser"
