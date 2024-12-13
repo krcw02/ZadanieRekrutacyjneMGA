@@ -50,7 +50,7 @@ export class ListPageComponent implements OnInit {
   openDeleteModal(id: number): void {
     this.userToDeleteId = id;
     this.isDeleteModalOpen = true;
-    const modalElement = document.getElementById('staticBackdrop');
+    const modalElement = document.getElementById('staticBackdropDelete');
     const modal = new bootstrap.Modal(modalElement!);
     modal.show();
   }
