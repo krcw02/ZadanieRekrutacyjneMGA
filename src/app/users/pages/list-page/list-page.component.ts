@@ -27,12 +27,18 @@ export class ListPageComponent implements OnInit {
   userToDeleteId: number | null = null;
 
   ngOnInit(): void {
-    this.UserService.getUsers().subscribe((data) => {
-      this.users = data;
-    }),
-      (error: any) => {
+    this.getUsers();
+  }
+
+  getUsers(): void {
+    this.UserService.getUsers().subscribe({
+      next: (data: User[]) => {
+        this.users = data;
+      },
+      error: (error: any) => {
         console.error('Błąd podczas pobierania użytkowników', error);
-      };
+      }
+    });
   }
 
   openModal(user: User | null): void {

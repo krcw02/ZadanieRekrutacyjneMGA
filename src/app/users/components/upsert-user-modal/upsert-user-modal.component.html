@@ -17,15 +17,18 @@
           type="button"
           class="btn-close"
           data-bs-dismiss="modal"
-          aria-label="Close"
+          aria-label="Close modal"
           (click)="onClose(form)"
+          
         ></button>
       </div>
       <div>
         <form class="modal-body" #form="ngForm" (ngSubmit)="onSave()">
           <div class="row">
             <div class="col-sm-6">
-              <label for="first_name" class="form-label">First name</label>
+              <label for="first_name" class="form-label"
+                >First name<span class="text-danger">*</span></label
+              >
               <input
                 type="text"
                 class="form-control"
@@ -33,38 +36,44 @@
                 name="first_name"
                 placeholder="Type in the first name"
                 required
+                pattern="[A-Za-z]+"
                 [(ngModel)]="user!.first_name"
                 #firstName="ngModel"
               />
             </div>
             <div class="col-sm-6">
-              <label for="last_name" class="form-label">Last name</label>
-              <input
+              <label for="last_name" class="form-label"
+                >Last name<span class="text-danger">*</span></label
+              >
+                <input
                 type="text"
                 class="form-control"
                 id="last_name"
                 name="last_name"
                 placeholder="Type in the last name"
                 required
+                pattern="[A-Za-z]+"
                 [(ngModel)]="user!.last_name"
                 #lastName="ngModel"
-              />
+                />
             </div>
           </div>
-          <div class="row mt-3">
-            <div class="col-12">
-              <label for="email" class="form-label">E-mail</label>
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                placeholder="Type in the email"
-                required
-                [(ngModel)]="user!.email"
-                #email="ngModel"
-              />
-            </div>
+          <div class="row mt-3"></div>
+          <div class="col-12">
+            <label for="email" class="form-label"
+              >E-mail <span class="text-danger">*</span></label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="Type in the email"
+              required
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              [(ngModel)]="user!.email"
+              #email="ngModel"
+            />
           </div>
         </form>
       </div>
@@ -74,6 +83,7 @@
           class="btn btn-secondary"
           data-bs-dismiss="modal"
           (click)="onClose(form)"
+          aria-label="Close modal"
         >
           Close
         </button>
@@ -84,6 +94,7 @@
           [disabled]="form.invalid"
           data-bs-dismiss="modal"
           (click)="onSave()"
+          aria-label="Save user"
         >
           Save
         </button>

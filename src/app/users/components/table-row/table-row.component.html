@@ -1,11 +1,9 @@
 <td class="align-middle text-center p-2">{{ user.id }}</td>
-<td class="align-middle text-center" style="width: 55px">
+<td class="align-middle text-center avatar" >
   <img
     *ngIf="user.avatar"
     [src]="user.avatar"
     alt="avatar"
-    width="50"
-    height="50"
     class="align-middle"
   />
   <i *ngIf="!user.avatar" class="fa-solid fa-user fa-xl"></i>
@@ -14,10 +12,10 @@
 <td class="align-middle">{{ user.last_name }}</td>
 <td class="align-middle">{{ user.email }}</td>
 <td class="align-middle text-end">
-  <button class="btn btn-sm text-primary" (click)="editUser()">
+  <button class="btn btn-sm text-primary" (click)="editUser()" aria-label="Edit User">
     <i class="fa-solid fa-pen-to-square"></i>
   </button>
-  <button class="btn btn-sm text-primary" (click)="deleteUser()">
+  <button class="btn btn-sm text-primary" (click)="deleteUser()" aria-label="Delete User">
     <i class="fa-solid fa-trash-can text-primary"></i>
   </button>
 </td>

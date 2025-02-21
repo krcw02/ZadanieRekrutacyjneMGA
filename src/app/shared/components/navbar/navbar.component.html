@@ -18,11 +18,12 @@
       aria-controls="navbarMenu"
       aria-expanded="false"
       aria-label="Toggle navigation"
+      (click)="toggleNavbar()"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarMenu">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto text-end">
         <li class="nav-item">
           <a
             class="nav-link"
@@ -30,6 +31,9 @@
             routerLink="/"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarMenu"
+            aria-label="Home page"
             >Home</a
           >
         </li>
@@ -39,11 +43,14 @@
             routerLink="/users/list"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarMenu"
+            aria-label="List of users"
             >List of smart guys</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#">Help</a>
+          <a class="nav-link disabled" href="#" aria-label="Help">Help</a>
         </li>
       </ul>
     </div>

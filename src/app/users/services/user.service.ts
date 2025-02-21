@@ -5,9 +5,11 @@ import { map } from 'rxjs/operators';
 import { throwError, catchError } from 'rxjs';
 import { User } from '../models/user.model';
 
+
 @Injectable({
   providedIn: 'root',
 })
+
 export class UserService {
   private apiUrl = 'https://reqres.in/api/users';
 

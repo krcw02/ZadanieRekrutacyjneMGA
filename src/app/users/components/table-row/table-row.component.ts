@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
   selector: 'tr[app-table-row]',
   imports: [CommonModule],
   templateUrl: './table-row.component.html',
+  styleUrls: ['./table-row.component.scss'],
 })
 export class TableRowComponent {
   @Input() user!: User;

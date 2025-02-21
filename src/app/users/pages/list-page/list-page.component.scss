@@ -1,0 +1,7 @@
+.fa-plus{
+    -webkit-text-stroke: 2px white;
+}
+.form-label.required .form-label:after {
+    content:"*";
+    color:red;
+  }

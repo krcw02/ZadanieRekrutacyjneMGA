@@ -1,0 +1,85 @@
+1. 15m / 15m
+2. 25m / 1:30 => 2:05 / 10:25 => 11:10 /
+3. 10m / 10m
+4. 10m / 10m
+5. 10m / 10m
+6. 1h / 10:00 => 10:20 /
+7. 15m / 15m
+8. 25m / 20m
+9. 15m / 15m
+10. 20m / 05m
+11. 10m / 05m
+12. 15m / 10m
+13. 20m / 10m
+14. 20m / 10m
+
+razem 4,5 / 2.25
+
+Uwagi do zadania rekrutacyjnego:
+
+1. Plusik na przycisku powinien być pogrubiony i wyrównany
+2. Nie działa prawidłowo `hamburger button` - Zwijanie (żeby zreprodukować błąd może być potrzebne przejście na listę użytkowników)
+3. Brakuje znaków asterysk w czerwonym kolorze obok wymaganych pól
+4. Brak walidatorów dla pól - Można wpisywać dowolne znaki, ujemne liczby itp.
+5. Nagłówki po kliknięciu w `hamburger button` powinny być wyrównane do prawej strony
+6. Przed finalnym skompilowaniem projektu wyskakują w terminalu WARNING`i
+(w styles.scss sprawdziłbym jeszcze czy można jakoś pozbyć się warningu o którym wspomniałeś `// Warningi w konsoli są spowodowane przez niezgodność wersji bootstrapa z sass`)
+```
+▲ [WARNING] Deprecation [plugin angular-sass]
+    src/styles.scss:7:8:
+      7 │ @import "../node_modules/bootstrap/scss/bootstrap";
+        ╵         ^
+  Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+ 
+  More info and automated migrator: https://sass-lang.com/d/import
+  The plugin "angular-sass" was triggered by this import
+    angular:styles/global:styles:3:8:
+      3 │ @import 'src/styles.scss';
+        ╵         ~~~~~~~~~~~~~~~~~
+```
+7. app.config.ts, users.module.ts - Nieużywany import:
+import { ListPageComponent } from './users/pages/list-page/list-page.component';
+7.1. `app.config.ts` jeśli dobrze myślę, to powinien mieć providery, natomiast nie powinno być tutaj `path`
+7.2. `app.routes.ts` i tutaj powinieneś mieć zdefiniowane trasy (patrz. pkt. 8)
+8. Usunięto `app.routes.ts`, w którym defaultowo ustawiane są trasy
+9. w user.service.spec.ts jest import `import { UserService } from './services/user.service';`, choć nie ma nawet takiego katalogu. Dodatkowo używany jest ten typ `UserService` właśnie w tym pliku
+10. w list-page.component.ts warto by było wydzielić istniejący kod w ngOnInit() to oddzielnej metody typu `getUsers()` i dodać do ngOnInit
+11. Dodano `HomeModule`, `SharedModule`,  który nie jest używany
+12. dodano bezpośrednio `style` w HTML -table-row.component.html:
+```
+<td class="align-middle text-center" style="width: 55px">
+  <img
+    *ngIf="user.avatar"
+    [src]="user.avatar"
+    alt="avatar"
+    width="50"
+    height="50"
+    class="align-middle"
+  />
+  ...
+```
+13. w list-page.component.ts
+zamiast w ngOnInit:
+```
+this.UserService.getUsers().subscribe((data) => {
+  this.users = data;
+}),
+  (error: any) => {
+    console.error('Błąd podczas pobierania użytkowników', error);
+  };
+```
+Zmieniłbym na:
+```
+    this.UserService.getUsers().subscribe({
+      next: (data: User[]) => {
+        this.users = data;
+      },
+      error: (error: any) => {
+        console.error('Błąd podczas pobierania użytkowników', error);
+      }
+    });    
+```
+14. Moim zdaniem brakuje identyfikacji przycisków. Warto by było dodać:
+  aria-label="Close delete modal"
+  aria-label="Confirm deletion"
+  itd..
