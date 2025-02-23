@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import * as bootstrap from 'bootstrap';
+declare const bootstrap: any;
 
 @Component({
   selector: 'app-upsert-user-modal',

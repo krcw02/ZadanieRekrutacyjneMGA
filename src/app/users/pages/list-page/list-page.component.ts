@@ -4,8 +4,9 @@ import { UserService } from '../../services/user.service';
 import { User } from '../../models/user.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import * as bootstrap from 'bootstrap';
 import { UpsertUserModalComponent } from '../../components/upsert-user-modal/upsert-user-modal.component';
+
+declare const bootstrap: any;
 
 @Component({
   selector: 'app-list-page',
@@ -37,7 +38,7 @@ export class ListPageComponent implements OnInit {
       },
       error: (error: any) => {
         console.error('Błąd podczas pobierania użytkowników', error);
-      }
+      },
     });
   }
 
